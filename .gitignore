@@ -42,8 +42,8 @@ vignettes/*.pdf
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
 
-# pkgdown site
-docs/
+# pkgdown site (but allow docs/ for GitHub Pages)
+# docs/
 
 # translation temp files
 po/*~

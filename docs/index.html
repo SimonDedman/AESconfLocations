@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASIH Conference Locations Visualization</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .feature {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .feature h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background: #5a67d8;
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: #e9ecef;
+            border-radius: 8px;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+        .code {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        .image-placeholder {
+            background: #e9ecef;
+            border: 2px dashed #6c757d;
+            padding: 3rem;
+            text-align: center;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ASIH Conference Locations</h1>
+        <p>Interactive visualization of American Society of Ichthyologists and Herpetologists annual meetings (1916-2025)</p>
+    </div>
+
+    <div class="content">
+        <h2>Overview</h2>
+        <p>This project visualizes the locations of ASIH annual meetings from 1916 to 2025, featuring:</p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🗺️ Interactive Mapping</h3>
+                <p>Leaflet-based maps with pan, zoom, and clickable meeting points</p>
+            </div>
+            <div class="feature">
+                <h3>🎨 Temporal Visualization</h3>
+                <p>Viridis color palette: darker points for older meetings, brighter for newer ones</p>
+            </div>
+            <div class="feature">
+                <h3>🌡️ State Heatmap</h3>
+                <p>US states colored white-to-red based on total meeting frequency</p>
+            </div>
+            <div class="feature">
+                <h3>🌍 International Support</h3>
+                <p>Non-US meetings positioned appropriately with fake state representations</p>
+            </div>
+            <div class="feature">
+                <h3>🔗 Chronological Flow</h3>
+                <p>Optional connecting lines with arrows showing meeting progression over time</p>
+            </div>
+            <div class="feature">
+                <h3>📊 Smart Jittering</h3>
+                <p>Overlapping locations (like New Orleans) separated for better visibility</p>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Total Meetings</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">109</div>
+                <div class="stat-label">Years Covered</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">35+</div>
+                <div class="stat-label">US States Visited</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Countries</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>🚀 Get Started</h2>
+        
+        <div class="note">
+            <strong>Note:</strong> Shiny apps cannot run directly on GitHub Pages (static hosting). 
+            To experience the full interactive features, you'll need to run the app locally using R.
+        </div>
+
+        <h3>Option 1: Run Locally (Full Interactive Experience)</h3>
+        <div class="code">
+# Clone the repository
+git clone https://github.com/SimonDedman/AESconfLocations.git
+cd AESconfLocations
+
+# Install required R packages
+R -e "install.packages(c('shiny', 'shinydashboard', 'shinyWidgets', 'DT', 
+                        'plotly', 'leaflet', 'tidyverse', 'sf', 'maps', 
+                        'viridis', 'ggplot2', 'dplyr', 'purrr', 'tidygeocoder', 
+                        'ggrepel', 'rmarkdown', 'knitr'))"
+
+# Run the Shiny app
+R -e "shiny::runApp()"
+        </div>
+
+        <h3>Option 2: Generate Static Visualization</h3>
+        <div class="code">
+# Run the main analysis script
+R -e "source('R/main.R')"
+
+# This will create a high-resolution PNG in the output/ folder
+        </div>
+
+        <div class="image-placeholder">
+            <h3>📈 Static Visualization Preview</h3>
+            <p>The static map would appear here when generated locally.</p>
+            <p>Features US states heatmap, temporal point coloring, and chronological flow lines.</p>
+        </div>
+
+        <a href="https://github.com/SimonDedman/AESconfLocations" class="btn">📱 View on GitHub</a>
+        <a href="https://github.com/SimonDedman/AESconfLocations/archive/refs/heads/main.zip" class="btn btn-secondary">💾 Download ZIP</a>
+    </div>
+
+    <div class="content">
+        <h2>📋 Project Details</h2>
+        
+        <h3>Data Source</h3>
+        <p>Conference location data sourced from the <a href="https://www.asih.org/past-meetings" target="_blank">ASIH Past Meetings page</a>.</p>
+        
+        <h3>Technical Stack</h3>
+        <ul>
+            <li><strong>R</strong> - Data processing and statistical analysis</li>
+            <li><strong>Shiny</strong> - Interactive web application framework</li>
+            <li><strong>Leaflet</strong> - Interactive mapping library</li>
+            <li><strong>ggplot2</strong> - Static visualizations with viridis color palette</li>
+            <li><strong>sf & maps</strong> - Geographic data processing</li>
+            <li><strong>tidygeocoder</strong> - Geocoding city names to coordinates</li>
+            <li><strong>GitHub Actions</strong> - Automated deployment pipeline</li>
+        </ul>
+
+        <h3>Key Features</h3>
+        <ul>
+            <li>Interactive dashboard with multiple visualization tabs</li>
+            <li>Year range and country filtering capabilities</li>
+            <li>Clickable map points with detailed meeting information</li>
+            <li>Summary statistics and data tables</li>
+            <li>Responsive design for desktop and mobile devices</li>
+            <li>Chronological progression visualization</li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>📞 Contact & Contributing</h2>
+        <p>This project was created for visualizing the geographic and temporal patterns of ASIH conference locations. 
+           For questions, suggestions, or contributions, please visit the 
+           <a href="https://github.com/SimonDedman/AESconfLocations" target="_blank">GitHub repository</a>.</p>
+        
+        <p><strong>Generated with</strong> 🤖 <a href="https://claude.ai/code" target="_blank">Claude Code</a></p>
+    </div>
+
+    <script>
+        // Add some basic interactivity
+        document.querySelectorAll('.feature').forEach(feature => {
+            feature.addEventListener('mouseenter', () => {
+                feature.style.transform = 'translateY(-2px)';
+                feature.style.transition = 'transform 0.3s ease';
+            });
+            
+            feature.addEventListener('mouseleave', () => {
+                feature.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
