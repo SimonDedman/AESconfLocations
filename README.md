@@ -49,7 +49,7 @@ install.packages("ggplot2")
 
 3. Generate the visualization:
 ```r
-source("generate_ultra_simple_map.R")
+source("generate_map.R")
 ```
 
 **That's it!** The script will create high-resolution PNG files in both `docs/` and `output/` folders.
@@ -58,11 +58,14 @@ source("generate_ultra_simple_map.R")
 
 ```
 AESconfLocations/
-├── generate_ultra_simple_map.R  # Main script - run this!
+├── generate_map.R               # Main script - run this!
 ├── data/
 │   └── asih_meetings.csv        # Conference location data (1916-2025)
-├── R/
-│   └── ultra_simple_viz.R       # Visualization functions
+├── R/                           # All R code organized here
+│   ├── generate_ultra_simple_map.R  # Core generation script
+│   ├── ultra_simple_viz.R       # Visualization functions
+│   ├── main.R                   # Original main script
+│   └── data_processing.R        # Data processing functions
 ├── docs/                        # GitHub Pages site
 │   ├── index.html              # Project homepage
 │   └── asih_conference_map.png # Generated visualization

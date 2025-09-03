@@ -6,7 +6,7 @@ library(ggplot2)
 # Create ultra-simple visualization
 create_ultra_simple_map <- function() {
   # Load data
-  meetings <- read.csv("data/asih_meetings.csv", stringsAsFactors = FALSE)
+  meetings <- read.csv("../data/asih_meetings.csv", stringsAsFactors = FALSE)
   
   # Simple geocoding using manual coordinates for major cities
   city_coords <- data.frame(

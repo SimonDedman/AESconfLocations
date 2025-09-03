@@ -8,11 +8,11 @@ if (!require(ggplot2, quietly = TRUE)) {
 }
 
 # Source the ultra-simple visualization
-source("R/ultra_simple_viz.R")
+source("ultra_simple_viz.R")
 
 # Load data and calculate statistics
 cat("Loading ASIH meeting data...\n")
-meetings <- read.csv("data/asih_meetings.csv", stringsAsFactors = FALSE)
+meetings <- read.csv("../data/asih_meetings.csv", stringsAsFactors = FALSE)
 
 # Calculate detailed statistics
 total_meetings <- nrow(meetings)
@@ -41,21 +41,21 @@ cat("Generating ultra-simple visualization...\n")
 map_plot <- create_ultra_simple_map()
 
 # Create output directories
-if (!dir.exists("docs")) {
-  dir.create("docs")
+if (!dir.exists("../docs")) {
+  dir.create("../docs")
 }
-if (!dir.exists("output")) {
-  dir.create("output")
+if (!dir.exists("../output")) {
+  dir.create("../output")
 }
 
 # Save high-resolution images
 cat("Saving high-resolution maps...\n")
-ggsave("docs/asih_conference_map.png", 
+ggsave("../docs/asih_conference_map.png", 
        map_plot, 
        width = 16, height = 12, dpi = 300,
        bg = "white")
 
-ggsave("output/asih_conference_map.png", 
+ggsave("../output/asih_conference_map.png", 
        map_plot, 
        width = 16, height = 12, dpi = 300,
        bg = "white")
