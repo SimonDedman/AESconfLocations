@@ -161,19 +161,19 @@
 
         <div class="stats">
             <div class="stat">
-                <div class="stat-number">100+</div>
+                <div class="stat-number">105</div>
                 <div class="stat-label">Total Meetings</div>
             </div>
             <div class="stat">
-                <div class="stat-number">109</div>
+                <div class="stat-number">110</div>
                 <div class="stat-label">Years Covered</div>
             </div>
             <div class="stat">
-                <div class="stat-number">35+</div>
+                <div class="stat-number">28</div>
                 <div class="stat-label">US States Visited</div>
             </div>
             <div class="stat">
-                <div class="stat-number">4</div>
+                <div class="stat-number">5</div>
                 <div class="stat-label">Countries</div>
             </div>
         </div>
@@ -182,39 +182,28 @@
     <div class="content">
         <h2>🚀 Get Started</h2>
         
-        <div class="note">
-            <strong>Note:</strong> Shiny apps cannot run directly on GitHub Pages (static hosting). 
-            To experience the full interactive features, you'll need to run the app locally using R.
-        </div>
-
-        <h3>Option 1: Run Locally (Full Interactive Experience)</h3>
+        <h3>📊 Generate Your Own Visualization</h3>
         <div class="code">
 # Clone the repository
 git clone https://github.com/SimonDedman/AESconfLocations.git
 cd AESconfLocations
 
-# Install required R packages
-R -e "install.packages(c('shiny', 'shinydashboard', 'shinyWidgets', 'DT', 
-                        'plotly', 'leaflet', 'tidyverse', 'sf', 'maps', 
-                        'viridis', 'ggplot2', 'dplyr', 'purrr', 'tidygeocoder', 
-                        'ggrepel', 'rmarkdown', 'knitr'))"
+# Install ggplot2 (only required package)
+R -e "install.packages('ggplot2')"
 
-# Run the Shiny app
-R -e "shiny::runApp()"
+# Generate the static visualization
+R -e "source('generate_ultra_simple_map.R')"
+
+# This creates high-resolution PNGs in docs/ and output/ folders
         </div>
 
-        <h3>Option 2: Generate Static Visualization</h3>
-        <div class="code">
-# Run the main analysis script
-R -e "source('R/main.R')"
+        <p><strong>That's it!</strong> The simplified approach uses only ggplot2 and base R functions, making it easy to run anywhere.</p>
 
-# This will create a high-resolution PNG in the output/ folder
-        </div>
-
-        <div class="image-placeholder">
-            <h3>📈 Static Visualization Preview</h3>
-            <p>The static map would appear here when generated locally.</p>
-            <p>Features US states heatmap, temporal point coloring, and chronological flow lines.</p>
+        <div style="text-align: center; margin: 2rem 0;">
+            <img src="asih_conference_map.png" alt="ASIH Conference Locations Map" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <p style="margin-top: 1rem; font-style: italic; color: #6c757d;">
+                Interactive visualization showing 105 ASIH meetings from 1916-2025 across 28 US states and 5 countries
+            </p>
         </div>
 
         <a href="https://github.com/SimonDedman/AESconfLocations" class="btn">📱 View on GitHub</a>
@@ -230,22 +219,20 @@ R -e "source('R/main.R')"
         <h3>Technical Stack</h3>
         <ul>
             <li><strong>R</strong> - Data processing and statistical analysis</li>
-            <li><strong>Shiny</strong> - Interactive web application framework</li>
-            <li><strong>Leaflet</strong> - Interactive mapping library</li>
-            <li><strong>ggplot2</strong> - Static visualizations with viridis color palette</li>
-            <li><strong>sf & maps</strong> - Geographic data processing</li>
-            <li><strong>tidygeocoder</strong> - Geocoding city names to coordinates</li>
-            <li><strong>GitHub Actions</strong> - Automated deployment pipeline</li>
+            <li><strong>ggplot2</strong> - Static visualizations with viridis-inspired color palette</li>
+            <li><strong>Base R functions</strong> - Manual geocoding and data processing</li>
+            <li><strong>GitHub Pages</strong> - Static web hosting</li>
+            <li><strong>Minimal dependencies</strong> - Only requires ggplot2 for maximum portability</li>
         </ul>
 
         <h3>Key Features</h3>
         <ul>
-            <li>Interactive dashboard with multiple visualization tabs</li>
-            <li>Year range and country filtering capabilities</li>
-            <li>Clickable map points with detailed meeting information</li>
-            <li>Summary statistics and data tables</li>
-            <li>Responsive design for desktop and mobile devices</li>
-            <li>Chronological progression visualization</li>
+            <li>Clean, static visualization using only ggplot2</li>
+            <li>Temporal color coding with viridis-inspired palette</li>
+            <li>Smart jittering for overlapping meeting locations</li>
+            <li>International meetings marked with distinct symbols</li>
+            <li>Comprehensive statistics and city rankings</li>
+            <li>High-resolution output suitable for presentations</li>
         </ul>
     </div>
 

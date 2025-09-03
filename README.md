@@ -1,37 +1,40 @@
 # ASIH Conference Locations Visualization
 
-Interactive visualization of American Society of Ichthyologists and Herpetologists (ASIH) annual meeting locations from 1916-2025.
+Static visualization of American Society of Ichthyologists and Herpetologists (ASIH) annual meeting locations from 1916-2025.
 
-## Features
+## 📊 Overview Statistics
 
-- **Interactive Map**: Pan, zoom, and click on meeting locations for details
-- **Temporal Visualization**: Points colored by year using viridis palette (dark = old, bright = new)  
-- **State Heatmap**: US states colored white-to-red based on total meeting frequency
-- **International Support**: Fake states positioned outside US for international meetings
-- **Chronological Flow**: Optional connecting lines showing meeting progression over time
+- **105 total meetings** across 110 years (1916-2025)
+- **28 US states visited** with multiple repeat locations
+- **5 countries represented**: USA, Canada, Costa Rica, Mexico, Brazil
+- **Top cities**: New York (7 meetings), New Orleans (6), Washington DC (6)
+
+## 🎯 Features
+
+- **Temporal Visualization**: Points colored by year using viridis-inspired palette (dark = old, bright = new)  
 - **Smart Jittering**: Overlapping points (like New Orleans) are separated for clarity
-- **Filtering**: Year range and country filters available
-- **Responsive Design**: Works on desktop and mobile devices
+- **International Support**: International meetings marked with triangles
+- **Minimal Dependencies**: Uses only ggplot2 and base R for maximum compatibility
+- **High Resolution**: 16"×12" at 300 DPI output suitable for presentations
+- **Comprehensive Statistics**: Detailed breakdown by decade, city, and country
 
-## Live Demo
+## 🌐 Live Demo
 
-Visit the interactive visualization at: https://simondedman.github.io/AESconfLocations/
+Visit the visualization at: https://simondedman.github.io/AESconfLocations/
 
-## Data Source
+## 📋 Data Source
 
 Conference location data sourced from [ASIH Past Meetings](https://www.asih.org/past-meetings).
 
-## Technical Stack
+## 🛠️ Technical Stack
 
-- **R** - Data processing and analysis
-- **Shiny** - Interactive web application framework
-- **Leaflet** - Interactive mapping
-- **ggplot2** - Static visualizations with viridis color palette
-- **sf & maps** - Geographic data processing
-- **GitHub Actions** - Automated deployment
-- **GitHub Pages** - Web hosting
+- **R** - Data processing and statistical analysis
+- **ggplot2** - Static visualizations with custom color palette
+- **Base R functions** - Manual geocoding and data processing
+- **GitHub Pages** - Static web hosting
+- **Minimal dependencies** - Only requires ggplot2!
 
-## Local Development
+## 🚀 Quick Start
 
 1. Clone the repository:
 ```bash
@@ -39,78 +42,70 @@ git clone git@github.com:SimonDedman/AESconfLocations.git
 cd AESconfLocations
 ```
 
-2. Install required R packages:
+2. Install ggplot2 (only required package):
 ```r
-install.packages(c(
-  "shiny", "shinydashboard", "shinyWidgets", "DT", "plotly", "leaflet",
-  "tidyverse", "sf", "maps", "viridis", "ggplot2", "dplyr", "purrr", 
-  "tidygeocoder", "ggrepel", "rmarkdown", "knitr"
-))
+install.packages("ggplot2")
 ```
 
-3. Run the main analysis:
+3. Generate the visualization:
 ```r
-source("main.R")
+source("generate_ultra_simple_map.R")
 ```
 
-4. Launch the Shiny app:
-```r
-shiny::runApp()
-```
+**That's it!** The script will create high-resolution PNG files in both `docs/` and `output/` folders.
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 AESconfLocations/
-├── app.R                 # Main Shiny application
-├── main.R               # Main analysis script  
-├── index.Rmd            # R Markdown for GitHub Pages
+├── generate_ultra_simple_map.R  # Main script - run this!
 ├── data/
-│   └── asih_meetings.csv # Conference location data
+│   └── asih_meetings.csv        # Conference location data (1916-2025)
 ├── R/
-│   ├── data_processing.R # Data cleaning and geocoding
-│   └── visualization.R   # Plotting functions
-├── output/              # Generated plots and results
-└── .github/workflows/   # GitHub Actions deployment
+│   └── ultra_simple_viz.R       # Visualization functions
+├── docs/                        # GitHub Pages site
+│   ├── index.html              # Project homepage
+│   └── asih_conference_map.png # Generated visualization
+└── output/                      # Local output folder
+    └── asih_conference_map.png # Copy of generated visualization
 ```
 
-## Data Processing
+## 🔍 Data Processing
 
-The visualization includes several data processing steps:
+The visualization includes several key steps:
 
-1. **Geocoding**: Convert city names to latitude/longitude coordinates
-2. **Jittering**: Separate overlapping points for better visibility
-3. **State Mapping**: Join meeting locations with US state boundaries
-4. **International Handling**: Position international meetings appropriately
-5. **Temporal Ordering**: Sort meetings chronologically for flow visualization
+1. **Manual Geocoding**: Pre-defined coordinates for 60+ major cities
+2. **Smart Jittering**: Automatic separation of overlapping meeting locations
+3. **International Positioning**: Special handling for non-US meetings
+4. **Temporal Coloring**: Year-based color mapping using viridis-inspired palette
+5. **Statistical Analysis**: Comprehensive breakdown by location, decade, and country
 
-## Visualization Features
+## 📈 Output Statistics
 
-### Static Map
-- US states colored by visit frequency (white = 0 visits, red = most visits)
-- Meeting points colored by year (viridis palette)
-- Jittered points for overlapping locations
-- Optional chronological connecting lines with arrows
-- Year labels on points
+The script generates detailed statistics including:
+- **Top 10 most visited cities** with meeting counts
+- **Meetings by decade** showing temporal distribution  
+- **International meetings breakdown** by country
+- **Geographic coverage** across US states
+- **High-resolution visualization** ready for presentations
 
-### Interactive Map  
-- Leaflet-based web map with multiple base layers
-- Clickable points showing meeting details
-- Year range and country filtering
-- Responsive design for mobile devices
-
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable  
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## License
+## 📄 License
 
-MIT License - see LICENSE file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
+## 📬 Contact
 
-For questions or suggestions, please open an issue on GitHub.
+For questions, suggestions, or collaborations, please:
+- Open an issue on [GitHub](https://github.com/SimonDedman/AESconfLocations/issues)
+- Visit the live demo at [simondedman.github.io/AESconfLocations](https://simondedman.github.io/AESconfLocations/)
+
+---
+*🤖 Generated with [Claude Code](https://claude.ai/code)*
