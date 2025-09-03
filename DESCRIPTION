@@ -1,0 +1,27 @@
+Package: AESconfLocations
+Title: ASIH Conference Locations Visualization
+Version: 1.0.0
+Authors@R: person("Simon", "Dedman", email = "simon.dedman@example.com", role = c("aut", "cre"))
+Description: Interactive visualization of American Society of Ichthyologists and Herpetologists conference locations from 1916-2025.
+Depends: R (>= 4.0.0)
+Imports:
+    shiny,
+    shinydashboard,
+    shinyWidgets,
+    DT,
+    plotly,
+    leaflet,
+    tidyverse,
+    sf,
+    maps,
+    viridis,
+    ggplot2,
+    dplyr,
+    purrr,
+    tidygeocoder,
+    ggrepel,
+    rmarkdown,
+    knitr
+License: MIT
+Encoding: UTF-8
+LazyData: true

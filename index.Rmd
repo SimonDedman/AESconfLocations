@@ -1,0 +1,117 @@
+---
+title: "ASIH Conference Locations Visualization"
+author: "Interactive map showing American Society of Ichthyologists and Herpetologists conference locations from 1916-2025"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    theme: cosmo
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(sf)
+library(maps)
+library(viridis)
+library(ggplot2)
+library(dplyr)
+library(purrr)
+library(knitr)
+library(DT)
+
+# Source helper functions
+source("R/data_processing.R")
+source("R/visualization.R")
+
+# Load and process data
+meetings <- read_and_process_meetings()
+meetings_geocoded <- geocode_meetings(meetings)
+meetings_jittered <- create_jittered_coordinates(meetings_geocoded)
+state_counts <- create_state_visit_counts(meetings_jittered)
+```
+
+## Overview
+
+This visualization shows the locations of American Society of Ichthyologists and Herpetologists (ASIH) annual meetings from 1916 to 2025. The interactive map displays:
+
+- **Meeting points** colored by year using a viridis color palette (older meetings are darker, newer ones brighter)
+- **US states** colored with a white-to-red heatmap based on total number of visits
+- **International locations** positioned appropriately outside the US
+- **Chronological connections** showing the progression of meeting locations over time
+- **Jittered points** for overlapping locations (e.g., multiple New Orleans meetings)
+
+## Interactive Features
+
+- **[Launch Interactive Shiny App](app.html)** - Full interactive experience with filters and controls
+- Zoom and pan the map
+- Filter by year range and country
+- View detailed information for each meeting
+- Toggle chronological connecting lines
+
+## Static Visualization
+
+```{r static-map, fig.width=16, fig.height=10, dpi=150}
+# Create the main visualization
+conference_map <- create_conference_map(meetings_jittered, state_counts)
+conference_map_with_lines <- add_chronological_lines(conference_map, meetings_jittered)
+print(conference_map_with_lines)
+```
+
+## Summary Statistics
+
+```{r summary-stats}
+# Summary statistics
+total_meetings <- nrow(meetings_jittered)
+years_covered <- paste(min(meetings_jittered$year), "-", max(meetings_jittered$year))
+us_states <- length(unique(meetings_jittered$state_province[meetings_jittered$country == "USA"]))
+intl_meetings <- sum(meetings_jittered$country != "USA")
+
+cat("Total meetings:", total_meetings, "\n")
+cat("Years covered:", years_covered, "\n") 
+cat("US states visited:", us_states, "\n")
+cat("International meetings:", intl_meetings, "\n")
+```
+
+### Most Visited Cities
+
+```{r city-counts}
+city_counts <- meetings_jittered %>%
+  count(location, sort = TRUE) %>%
+  head(15)
+
+kable(city_counts, col.names = c("Location", "Number of Meetings"))
+```
+
+### Meetings by Decade
+
+```{r decade-plot, fig.width=10, fig.height=6}
+meetings_jittered %>%
+  mutate(decade = floor(year / 10) * 10) %>%
+  count(decade) %>%
+  ggplot(aes(x = decade, y = n)) +
+  geom_col(fill = "steelblue", alpha = 0.7) +
+  geom_text(aes(label = n), vjust = -0.5) +
+  labs(x = "Decade", y = "Number of Meetings",
+       title = "ASIH Meetings by Decade") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, size = 14))
+```
+
+## Data Source
+
+Conference location data was sourced from the [ASIH Past Meetings page](https://www.asih.org/past-meetings).
+
+## Technical Details
+
+This visualization was created using:
+
+- **R** for data processing and visualization
+- **ggplot2** with viridis color palette for static maps
+- **Shiny** for interactive web application  
+- **Leaflet** for interactive mapping
+- **sf** and **maps** packages for geographic data
+- **GitHub Pages** for web hosting
+
+The complete source code is available on [GitHub](https://github.com/SimonDedman/AESconfLocations).

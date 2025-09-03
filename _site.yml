@@ -1,0 +1,15 @@
+name: "ASIH Conference Locations"
+output_dir: "docs"
+navbar:
+  title: "ASIH Conference Locations"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Interactive Map"
+      href: app.html
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    include:
+      after_body: footer.html
