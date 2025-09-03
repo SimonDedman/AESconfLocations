@@ -13,8 +13,8 @@ library(tidygeocoder)
 library(ggrepel)
 
 # Source helper functions
-source("R/data_processing.R")
-source("R/visualization.R")
+source("data_processing.R")
+source("visualization.R")
 
 # Main execution
 main <- function() {
