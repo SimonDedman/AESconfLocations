@@ -125,47 +125,17 @@
 <body>
     <div class="header">
         <h1>ASIH Conference Locations</h1>
-        <p>Interactive visualization of American Society of Ichthyologists and Herpetologists annual meetings (1916-2025)</p>
+        <p>Interactive visualization of American Society of Ichthyologists and Herpetologists annual meetings (1916-2026)</p>
     </div>
 
     <div class="content">
-        <h2>Overview</h2>
-        <p>This project visualizes the locations of ASIH annual meetings from 1916 to 2025, featuring:</p>
-        
-        <div class="features">
-            <div class="feature">
-                <h3>🗺️ Interactive Mapping</h3>
-                <p>Leaflet-based maps with pan, zoom, and clickable meeting points</p>
-            </div>
-            <div class="feature">
-                <h3>🎨 Temporal Visualization</h3>
-                <p>Viridis color palette: darker points for older meetings, brighter for newer ones</p>
-            </div>
-            <div class="feature">
-                <h3>🌡️ State Heatmap</h3>
-                <p>US states colored white-to-red based on total meeting frequency</p>
-            </div>
-            <div class="feature">
-                <h3>🌍 International Support</h3>
-                <p>Non-US meetings positioned appropriately with fake state representations</p>
-            </div>
-            <div class="feature">
-                <h3>🔗 Chronological Flow</h3>
-                <p>Optional connecting lines with arrows showing meeting progression over time</p>
-            </div>
-            <div class="feature">
-                <h3>📊 Smart Jittering</h3>
-                <p>Overlapping locations (like New Orleans) separated for better visibility</p>
-            </div>
-        </div>
-
         <div class="stats">
             <div class="stat">
-                <div class="stat-number">105</div>
+                <div class="stat-number">106</div>
                 <div class="stat-label">Total Meetings</div>
             </div>
             <div class="stat">
-                <div class="stat-number">110</div>
+                <div class="stat-number">111</div>
                 <div class="stat-label">Years Covered</div>
             </div>
             <div class="stat">
@@ -177,32 +147,20 @@
                 <div class="stat-label">Countries</div>
             </div>
         </div>
-    </div>
 
-    <div class="content">
-        <h2>🚀 Get Started</h2>
-        
-        <h3>📊 Generate Your Own Visualization</h3>
-        <div class="code">
-# Clone the repository
-git clone https://github.com/SimonDedman/AESconfLocations.git
-cd AESconfLocations
-
-# Install ggplot2 (only required package)
-R -e "install.packages('ggplot2')"
-
-# Generate the static visualization
-R -e "source('generate_map.R')"
-
-# This creates high-resolution PNGs in docs/ and output/ folders
-        </div>
-
-        <p><strong>That's it!</strong> The simplified approach uses only ggplot2 and base R functions, making it easy to run anywhere.</p>
-
+        <h3>📍 Complete Timeline (1916-2026)</h3>
         <div style="text-align: center; margin: 2rem 0;">
             <img src="asih_conference_map.png" alt="ASIH Conference Locations Map" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <p style="margin-top: 1rem; font-style: italic; color: #6c757d;">
-                Interactive visualization showing 105 ASIH meetings from 1916-2025 across 28 US states and 5 countries
+                Complete visualization showing 106 ASIH meetings from 1916-2026 across 28 US states, 4 Canadian provinces, and 5 countries total
+            </p>
+        </div>
+
+        <h3>🌟 Modern Era (2000-2026)</h3>
+        <div style="text-align: center; margin: 2rem 0;">
+            <img src="asih_conference_map_2000.png" alt="ASIH Conference Locations Map 2000+" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <p style="margin-top: 1rem; font-style: italic; color: #6c757d;">
+                Modern era visualization showing 26 ASIH meetings from 2000-2026, highlighting recent geographic trends
             </p>
         </div>
 
@@ -219,20 +177,21 @@ R -e "source('generate_map.R')"
         <h3>Technical Stack</h3>
         <ul>
             <li><strong>R</strong> - Data processing and statistical analysis</li>
-            <li><strong>ggplot2</strong> - Static visualizations with viridis-inspired color palette</li>
-            <li><strong>Base R functions</strong> - Manual geocoding and data processing</li>
+            <li><strong>ggplot2</strong> - Static visualizations with clean boundary rendering</li>
+            <li><strong>sf</strong> - Spatial data handling for precise geographic boundaries</li>
+            <li><strong>rnaturalearth</strong> - High-quality subnational boundary data</li>
+            <li><strong>dplyr</strong> - Data manipulation and aggregation</li>
             <li><strong>GitHub Pages</strong> - Static web hosting</li>
-            <li><strong>Minimal dependencies</strong> - Only requires ggplot2 for maximum portability</li>
         </ul>
 
         <h3>Key Features</h3>
         <ul>
-            <li>Clean, static visualization using only ggplot2</li>
-            <li>Temporal color coding with viridis-inspired palette</li>
-            <li>Smart jittering for overlapping meeting locations</li>
-            <li>International meetings marked with distinct symbols</li>
-            <li>Comprehensive statistics and city rankings</li>
-            <li>High-resolution output suitable for presentations</li>
+            <li>Clean static visualization eliminating "shards of glass" boundary effects</li>
+            <li>Decade-based discrete color coding (1910s-2020s)</li>
+            <li>Individual US state and Canadian province boundaries with heatmap coloring</li>
+            <li>All 106 meetings clearly labeled with city names</li>
+            <li>International meetings (Canada, Costa Rica, Mexico, Brazil) properly positioned</li>
+            <li>High-resolution output (20" × 14" at 300 DPI) suitable for presentations</li>
         </ul>
     </div>
 
